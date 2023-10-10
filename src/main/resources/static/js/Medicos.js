@@ -5,7 +5,6 @@ $(document).ready(function() {
 });
 
 async function cargarMedicos() {
-
   const request = await fetch('Medicos', {
     method: 'GET',
     headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}
@@ -17,21 +16,20 @@ async function cargarMedicos() {
   let listadoHtml = "";
 
   for (let medico of medicos) {
-
-    let medicoHtml = '' +
-        '<tr>' +
-        '<td>' + medico.cedula + '</td>' +
-        '<td>' + medico.nombre + '</td>' +
-        '<td>' + medico.apellido + '</td>' +
-        '<td>' + medico.correo + '</td>' +
-        '<td>' + medico.identificador + '</td>' +
-        '<td>' + medico.especialidad + '</td>' +
-        '<td><a href="#" class="btn btn-info btn-circle">\n<i class="fas fa-info-circle"></i>\n</a></td><td><a href="#" class="btn btn-danger btn-circle">\n<i class="fas fa-trash"></i>\n</a></td></tr>';
+    let medicoHtml =
+      '<tr>' +
+      '<td>' + medico.cedula + '</td>' +
+      '<td>' + medico.nombre + '</td>' +
+      '<td>' + medico.apellido + '</td>' +
+      '<td>' + medico.correo + '</td>' +
+      '<td>' + medico.identificador + '</td>' +
+      '<td>' + medico.especialidad + '</td>' +
+      '<td><a href="#" class="btn btn-info btn-circle">\n<i class="fas fa-info-circle"></i>\n</a></td>' +
+      '<td><a href="#" class="btn btn-danger btn-circle">\n<i class="fas fa-trash"></i>\n</a></td>' +
+      '</tr>';
 
     listadoHtml += medicoHtml;
-
   }
 
-  return document.querySelector('#medicos tbody').outerHTML = listadoHtml;
-
+  document.querySelector('#TablaMedicos tbody').outerHTML = listadoHtml;
 }
