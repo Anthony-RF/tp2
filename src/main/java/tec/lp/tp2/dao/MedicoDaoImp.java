@@ -4,8 +4,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
+import tec.lp.tp2.model.Cita;
 import tec.lp.tp2.model.Medico;
+import tec.lp.tp2.model.MedicoAgendaItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -16,19 +19,26 @@ public class MedicoDaoImp implements MedicoDao{
     private EntityManager entityManager;
 
     @Override
+    public void createMedico(Medico medico) {
+
+    }
+
+    @Override
     public List<Medico> readAllMedico() {
         String query = "FROM Medico";
         return entityManager.createQuery(query).getResultList();
     }
 
     @Override
-    public void createMedico(Medico medico) {
-
+    public Medico readByCedulaMedico(int cedula) {
+        String query = "FROM Medico WHERE cedula = :cedula";
+        return (Medico) entityManager.createQuery(query);
     }
 
     @Override
-    public Medico readMedico(String cedula) {
-        return null;
+    public Medico readByIDMedico(int id) {
+        String query = "FROM Medico WHERE id = :id";
+        return (Medico) entityManager.createQuery(query);
     }
 
     @Override
@@ -37,7 +47,20 @@ public class MedicoDaoImp implements MedicoDao{
     }
 
     @Override
-    public void deleteMedico(String cedula) {
+    public void deleteMedico(int cedula) {
 
+    }
+
+    public List<MedicoAgendaItem> getAgenda(int id) {
+        String query = "FROM Medico WHERE id = :id";
+        Medico medico = (Medico) entityManager.createQuery(query);
+        List<MedicoAgendaItem> agenda = new ArrayList<>();
+        for (Cita cita : medico.getCitas()) {
+            MedicoAgendaItem item = new MedicoAgendaItem();
+            item.setFecha(cita.getFecha());
+            item.setPaciente(cita.getPersona());
+            agenda.add(item);
+        }
+        return agenda;
     }
 }
