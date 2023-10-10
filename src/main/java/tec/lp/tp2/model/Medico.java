@@ -8,6 +8,7 @@ import java.util.List;
 
 
 @Entity
+@DiscriminatorValue("1")
 @Table(name = "Medico")
 @ToString
 public class Medico extends Persona{
@@ -38,11 +39,11 @@ public class Medico extends Persona{
             joinColumns = @JoinColumn(name = "id_Medico"),
             inverseJoinColumns = @JoinColumn(name = "id_Especialista")
     )
-    private List<Medico> especialistas;
+    private List<Medico> referenciante;
 
     @Getter @Setter
-    @ManyToMany(mappedBy = "especialistas")
-    private List<Medico> especialistasDe;
+    @ManyToMany(mappedBy = "referenciante")
+    private List<Medico> referenciado;
 
 }
 

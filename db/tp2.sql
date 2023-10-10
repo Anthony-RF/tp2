@@ -15,7 +15,8 @@ CREATE TABLE IF NOT EXISTS Persona(
     cedula INT PRIMARY KEY UNIQUE NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
-    correo VARCHAR(100) UNIQUE NOT NULL
+    correo VARCHAR(100) UNIQUE NOT NULL,
+    tipo INT
 );
 
 CREATE TABLE IF NOT EXISTS Medico(
@@ -63,18 +64,18 @@ CREATE TABLE IF NOT EXISTS Medicamento_Cita(
     FOREIGN KEY (fecha_Cita) REFERENCES Cita(fecha)
 );
 
-INSERT INTO Persona (cedula, nombre, apellido, correo)
+INSERT INTO Persona (cedula, nombre, apellido, correo, tipo)
 VALUES
-(0, 'Juan', 'Pérez', 'juan.perez@example.com'),
-(1, 'Ana', 'Gómez', 'ana.gomez@example.com'),
-(2, 'Pedro', 'Rodríguez', 'pedro.rodriguez@example.com'),
-(3, 'María', 'López', 'maria.lopez@example.com'),
-(4, 'Carlos', 'Sánchez', 'carlos.sanchez@example.com'),
-(5, 'Laura', 'Martínez', 'laura.martinez@example.com'),
-(6, 'José', 'Fernández', 'jose.fernandez@example.com'),
-(7, 'Sofía', 'Hernández', 'sofia.hernandez@example.com'),
-(8, 'Daniel', 'Díaz', 'daniel.diaz@example.com'),
-(9, 'Isabel', 'García', 'isabel.garcia@example.com');
+(0, 'Juan', 'Pérez', 'juan.perez@example.com', 0),
+(1, 'Ana', 'Gómez', 'ana.gomez@example.com', 0),
+(2, 'Pedro', 'Rodríguez', 'pedro.rodriguez@example.com', 0),
+(3, 'María', 'López', 'maria.lopez@example.com', 0),
+(4, 'Carlos', 'Sánchez', 'carlos.sanchez@example.com', 0),
+(5, 'Laura', 'Martínez', 'laura.martinez@example.com', 1),
+(6, 'José', 'Fernández', 'jose.fernandez@example.com', 1),
+(7, 'Sofía', 'Hernández', 'sofia.hernandez@example.com', 1),
+(8, 'Daniel', 'Díaz', 'daniel.diaz@example.com', 1),
+(9, 'Isabel', 'García', 'isabel.garcia@example.com', 1);
 
 INSERT INTO Medico (id, especialidad, cedula)
 VALUES

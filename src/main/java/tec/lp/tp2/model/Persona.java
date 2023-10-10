@@ -3,11 +3,14 @@ package tec.lp.tp2.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.type.descriptor.jdbc.TinyIntJdbcType;
 
 import java.util.List;
 
 @Entity
 @Table(name = "Persona")
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Persona {
 
     @Setter @Getter
@@ -27,6 +30,10 @@ public abstract class Persona {
     @Getter @Setter
     @Column(name = "correo", unique = true)
     private String correo;
+
+    @Getter @Setter
+    @Column(name = "tipo")
+    private TinyIntJdbcType tipo;
 
     @Getter @Setter
     @OneToOne(mappedBy = "persona")
