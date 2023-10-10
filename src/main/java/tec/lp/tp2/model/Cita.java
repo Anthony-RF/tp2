@@ -1,34 +1,47 @@
 package tec.lp.tp2.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "Cita")
 @ToString
 public class Cita {
 
+    @Getter @Setter
     @Id
-    @Setter @Getter
     @Column(name = "fecha")
     private LocalDateTime fecha;
 
-    @Setter @Getter
-    @Column(name = "Padecimiento")
-    private String Padecimiento;
+    @Getter @Setter
+    @Column(name = "padecimiento")
+    private String padecimiento;
 
-    @Setter @Getter
-    @Column(name = "cedula_Paciente")
-    private int cedula_Paciente;
+    @Getter @Setter
+    @Column(name = "procedimiento")
+    private String procedimiento;
 
-    @Setter @Getter
-    @Column(name = "cedula_Medico")
-    private int cedula_Medico;
+    @Getter @Setter
+    @ManyToOne
+    @JoinColumn(name = "cedula_Persona", referencedColumnName = "cedula")
+    private Persona persona;
+
+    @Getter @Setter
+    @ManyToOne
+    @JoinColumn(name = "id_Medico")
+    private Medico medico;
+
+    @Getter @Setter
+    @ManyToMany
+    @JoinTable(
+            name = "Medicamento_Cita",
+            joinColumns = @JoinColumn(name = "fecha_Cita"),
+            inverseJoinColumns = @JoinColumn(name = "nombre_Medicamento")
+    )
+    private List<Medicamento> medicamentos;
 
 }

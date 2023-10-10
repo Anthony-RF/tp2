@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS Medico_Medico;
 DROP TABLE IF EXISTS Cita;
 DROP TABLE IF EXISTS Medicamento;
 DROP TABLE IF EXISTS Medico;
+DROP TABLE IF EXISTS Persona;
 
 
 CREATE TABLE IF NOT EXISTS Persona(
@@ -18,9 +19,9 @@ CREATE TABLE IF NOT EXISTS Persona(
 );
 
 CREATE TABLE IF NOT EXISTS Medico(
-    cedula INT PRIMARY KEY,
-    identificador INT UNIQUE NOT NULL,
+    id INT PRIMARY KEY UNIQUE NOT NULL,
     especialidad VARCHAR(100),
+    cedula INT,
     FOREIGN KEY (cedula) REFERENCES Persona(cedula)
 );
 
@@ -31,26 +32,27 @@ CREATE TABLE IF NOT EXISTS Medicamento(
 CREATE TABLE IF NOT EXISTS Cita(
     fecha DATETIME PRIMARY KEY UNIQUE NOT NULL,
     padecimiento VARCHAR(100) NOT NULL,
+    procedimiento VARCHAR(100) NOT NULL,
     cedula_Persona INT NOT NULL,
-    cedula_Medico INT NOT NULL,
+    id_Medico INT NOT NULL,
     FOREIGN KEY (cedula_Persona) REFERENCES Persona(cedula),
-    FOREIGN KEY (cedula_Medico) REFERENCES Medico(cedula)
+    FOREIGN KEY (id_Medico) REFERENCES Medico(id)
 );
 
 CREATE TABLE IF NOT EXISTS Medico_Persona(
-    cedula_Medico INT NOT NULL,
+    id_Medico INT NOT NULL,
     cedula_Persona INT NOT NULL,
-    PRIMARY KEY (cedula_Persona, cedula_Medico),
-    FOREIGN KEY (cedula_Medico) REFERENCES Medico(cedula),
+    PRIMARY KEY (cedula_Persona, id_Medico),
+    FOREIGN KEY (id_Medico) REFERENCES Medico(id),
     FOREIGN KEY (cedula_Persona) REFERENCES Persona(cedula)
 );
 
 CREATE TABLE IF NOT EXISTS Medico_Medico(
-    cedula_Medico INT NOT NULL,
-    cedula_Especialista INT NOT NULL,
-    PRIMARY KEY (cedula_Especialista, cedula_Medico),
-    FOREIGN KEY (cedula_Medico) REFERENCES Medico(cedula),
-    FOREIGN KEY (cedula_Especialista) REFERENCES Medico(cedula)
+    id_Medico INT NOT NULL,
+    id_Especialista INT NOT NULL,
+    PRIMARY KEY (id_Especialista, id_Medico),
+    FOREIGN KEY (id_Medico) REFERENCES Medico(id),
+    FOREIGN KEY (id_Especialista) REFERENCES Medico(id)
 );
 
 CREATE TABLE IF NOT EXISTS Medicamento_Cita(
@@ -74,15 +76,10 @@ VALUES
 (8, 'Daniel', 'Díaz', 'daniel.diaz@example.com'),
 (9, 'Isabel', 'García', 'isabel.garcia@example.com');
 
-INSERT INTO Medico (cedula, identificador, especialidad)
+INSERT INTO Medico (id, especialidad, cedula)
 VALUES
-(0, 0, 'Cirugía'),
-(1, 1, 'Cardiología'),
-(2, 2, NULL),
-(3, 3, 'Dermatología'),
-(4, 4, 'Oftalmología'),
-(5, 5, NULL),
-(6, 6, 'Neurología'),
-(7, 7, 'Ortopedia'),
-(8, 8, 'Endocrinología'),
-(9, 9, NULL);
+(0, 'Cirugía', 5),
+(1, 'Cardiología', 6),
+(2, NULL, 7),
+(3, 'Dermatología', 8),
+(4, 'Oftalmología', 9);

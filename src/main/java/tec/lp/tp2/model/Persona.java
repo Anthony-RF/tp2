@@ -1,31 +1,39 @@
 package tec.lp.tp2.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Persona")
 public abstract class Persona {
 
-    @Id
     @Setter @Getter
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cedula")
     private int cedula;
 
-    @Setter @Getter
+    @Getter @Setter
     @Column(name = "nombre")
     private String nombre;
 
-    @Setter @Getter
+    @Getter @Setter
     @Column(name = "apellido")
     private String apellido;
 
-    @Setter @Getter
-    @Column(name = "correo")
+    @Getter @Setter
+    @Column(name = "correo", unique = true)
     private String correo;
+
+    @Getter @Setter
+    @OneToOne(mappedBy = "persona")
+    private Medico medico;
+
+    @Getter @Setter
+    @OneToMany(mappedBy = "persona")
+    private List<Cita> citas;
 
 }
