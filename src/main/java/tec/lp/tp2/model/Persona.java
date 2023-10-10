@@ -4,13 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.type.descriptor.jdbc.TinyIntJdbcType;
-
 import java.util.List;
 
 @Entity
 @Table(name = "Persona")
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Persona {
 
     @Setter @Getter

@@ -4,13 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
 @Entity
-@DiscriminatorValue("1")
 @Table(name = "Medico")
 @ToString
 public class Medico extends Persona{
