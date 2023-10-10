@@ -9,27 +9,21 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "Medico")
-@ToString @EqualsAndHashCode
+@ToString
 public class Medico extends Persona{
 
     @Id
-    @Setter @Getter @Column(name = "cedula")
-    private String cedula;
-
-    @Setter @Getter @Column(name = "nombre")
-    private String nombre;
-
-    @Setter @Getter @Column(name = "apellido")
-    private String apellido;
-
-    @Setter @Getter @Column(name = "correo")
-    private String correo;
-
-    @Setter @Getter @Column(name = "identificador")
+    @Setter @Getter
+    @Column(name = "identificador")
     private int identificador;
 
-    @Setter @Getter @Column(name = "especialidad")
+    @Setter @Getter
+    @Column(name = "especialidad")
     private String especialidad;
+
+    @Setter @Getter
+    @Column(name = "cedula_Persona")
+    private String cedula_Persona;
 
 }
 

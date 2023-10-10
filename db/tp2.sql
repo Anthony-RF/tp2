@@ -18,10 +18,10 @@ CREATE TABLE IF NOT EXISTS Persona(
 );
 
 CREATE TABLE IF NOT EXISTS Medico(
-    cedula_Medico INT PRIMARY KEY,
+    cedula INT PRIMARY KEY,
     identificador INT UNIQUE NOT NULL,
     especialidad VARCHAR(100),
-    FOREIGN KEY (cedula_Medico) REFERENCES Persona(cedula)
+    FOREIGN KEY (cedula) REFERENCES Persona(cedula)
 );
 
 CREATE TABLE IF NOT EXISTS Medicamento(
@@ -34,14 +34,14 @@ CREATE TABLE IF NOT EXISTS Cita(
     cedula_Persona INT NOT NULL,
     cedula_Medico INT NOT NULL,
     FOREIGN KEY (cedula_Persona) REFERENCES Persona(cedula),
-    FOREIGN KEY (cedula_Medico) REFERENCES Medico(cedula_Medico)
+    FOREIGN KEY (cedula_Medico) REFERENCES Medico(cedula)
 );
 
 CREATE TABLE IF NOT EXISTS Medico_Persona(
     cedula_Medico INT NOT NULL,
     cedula_Persona INT NOT NULL,
     PRIMARY KEY (cedula_Persona, cedula_Medico),
-    FOREIGN KEY (cedula_Medico) REFERENCES Medico(cedula_Medico),
+    FOREIGN KEY (cedula_Medico) REFERENCES Medico(cedula),
     FOREIGN KEY (cedula_Persona) REFERENCES Persona(cedula)
 );
 
@@ -49,8 +49,8 @@ CREATE TABLE IF NOT EXISTS Medico_Medico(
     cedula_Medico INT NOT NULL,
     cedula_Especialista INT NOT NULL,
     PRIMARY KEY (cedula_Especialista, cedula_Medico),
-    FOREIGN KEY (cedula_Medico) REFERENCES Medico(cedula_Medico),
-    FOREIGN KEY (cedula_Especialista) REFERENCES Medico(cedula_Medico)
+    FOREIGN KEY (cedula_Medico) REFERENCES Medico(cedula),
+    FOREIGN KEY (cedula_Especialista) REFERENCES Medico(cedula)
 );
 
 CREATE TABLE IF NOT EXISTS Medicamento_Cita(
@@ -74,7 +74,7 @@ VALUES
 (8, 'Daniel', 'Díaz', 'daniel.diaz@example.com'),
 (9, 'Isabel', 'García', 'isabel.garcia@example.com');
 
-INSERT INTO Medico (cedula_Medico, identificador, especialidad)
+INSERT INTO Medico (cedula, identificador, especialidad)
 VALUES
 (0, 0, 'Cirugía'),
 (1, 1, 'Cardiología'),
