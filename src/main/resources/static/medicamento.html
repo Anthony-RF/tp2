@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Medicamentos</title>
+</head>
+<body>
+<h1>Lista de Medicamentos</h1>
+<!-- Tabla para mostrar la lista de medicamentos -->
+<table>
+    <!-- Encabezados de la tabla -->
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <!-- Datos de los medicamentos -->
+    <tbody>
+    <tr th:each="medicamento : ${medicamentos}">
+        <td th:text="${medicamento.nombre}">Ibuprofeno</td>
+        <td>
+            <!-- Enlaces para editar y eliminar medicamentos -->
+            <a th:href="@{/medicamentos/edit/{nombre}(nombre=${medicamento.nombre})}">Editar</a>
+            <a th:href="@{/medicamentos/delete/{nombre}(nombre=${medicamento.nombre})}">Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!-- Enlace para agregar un nuevo medicamento -->
+<a th:href="@{/medicamentos/add}">Agregar Medicamento</a>
+<!-- JavaScript para la entidad Medicamento -->
+<script src="medicamentos.js"></script>
+</body>
+</html>

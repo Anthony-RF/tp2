@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lista de Citas</title>
 </head>
 <body>
-
+<h1>Lista de Citas</h1>
+<!-- Tabla para mostrar la lista de citas -->
+<table>
+    <!-- Encabezados de la tabla -->
+    <thead>
+    <tr>
+        <th>Fecha</th>
+        <th>Padecimiento</th>
+        <th>Procedimiento</th>
+        <th>Cédula del Paciente</th>
+        <th>ID del Médico</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <!-- Datos de las citas -->
+    <tbody>
+    <tr th:each="cita : ${citas}">
+        <td th:text="${cita.fecha}">2023-10-15 10:00:00</td>
+        <td th:text="${cita.padecimiento}">Dolor de cabeza</td>
+        <td th:text="${cita.procedimiento}">Examen de sangre</td>
+        <td th:text="${cita.cedulaPaciente}">123456</td>
+        <td th:text="${cita.idMedico}">1</td>
+        <td>
+            <!-- Enlaces para editar y eliminar citas -->
+            <a th:href="@{/citas/edit/{fecha}/{cedulaPaciente}/{idMedico}(fecha=${cita.fecha}, cedulaPaciente=${cita.cedulaPaciente}, idMedico=${cita.idMedico})}">Editar</a>
+            <a th:href="@{/citas/delete/{fecha}/{cedulaPaciente}/{idMedico}(fecha=${cita.fecha}, cedulaPaciente=${cita.cedulaPaciente}, idMedico=${cita.idMedico})}">Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!-- Enlace para agregar una nueva cita -->
+<a th:href="@{/citas/add}">Agregar Cita</a>
+<!-- JavaScript para la entidad Cita -->
+<script src="citas.js"></script>
 </body>
 </html>

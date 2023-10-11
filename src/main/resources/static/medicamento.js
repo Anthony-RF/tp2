@@ -1,8 +1,8 @@
-// Función para eliminar una cita
-function deleteCita(fecha, cedulaPaciente, idMedico) {
-    if (confirm('¿Estás seguro de que deseas eliminar esta cita?')) {
+// Función para eliminar un medicamento
+function deleteMedicamento(nombre) {
+    if (confirm('¿Estás seguro de que deseas eliminar este medicamento?')) {
         $.ajax({
-            url: '/citas/delete/' + fecha + '/' + cedulaPaciente + '/' + idMedico,
+            url: '/medicamentos/delete/' + nombre,
             type: 'DELETE',
             success: function(response) {
                 // Actualizar la vista o realizar otras acciones necesarias

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class CitaRepository {
+public class CitaRepository implements CitaRepositoryI {
 
     private final SessionFactory sessionFactory;
 
