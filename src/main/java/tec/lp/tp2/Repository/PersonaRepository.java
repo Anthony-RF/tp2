@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class PersonaRepository {
+public class PersonaRepository implements  PersonaRepositoryI{
 
     private final SessionFactory sessionFactory;
 

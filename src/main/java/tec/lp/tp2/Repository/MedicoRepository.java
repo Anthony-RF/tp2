@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class MedicoRepository {
+public class MedicoRepository implements MedicoRepositoryI{
 
     private final SessionFactory sessionFactory;
 
