@@ -23,7 +23,7 @@ public class MedicoDaoImp implements MedicoDao{
 
     @Override
     public List<Medico> readAllMedico() {
-        String query = "FROM Medico";
+        String query = "SELECT m FROM Medico m";
         return entityManager.createQuery(query).getResultList();
     }
 
@@ -41,18 +41,6 @@ public class MedicoDaoImp implements MedicoDao{
     @Override
     public void deleteMedico(int id) {
 
-    }
-
-    public List<MedicoAgendaItem> getAgenda(int id) {
-        Medico medico = readByIDMedico(id);
-        List<MedicoAgendaItem> agenda = new ArrayList<>();
-        for (Cita cita : medico.getCitas()) {
-            MedicoAgendaItem item = new MedicoAgendaItem();
-            item.setFecha(cita.getFecha());
-            item.setPaciente(cita.getPersona());
-            agenda.add(item);
-        }
-        return agenda;
     }
 
 }

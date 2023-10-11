@@ -12,5 +12,4 @@ public interface PacienteDao {
         Paciente readByCedulaPaciente(int cedula);
         void updatePaciente(Paciente paciente);
         void deletePaciente(int cedula);
-        List<PacienteAgendaItem> getAgenda(int cedula);
 }

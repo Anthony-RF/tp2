@@ -15,8 +15,4 @@ public class Medicamento {
     @Id
     @Column(name = "nombre")
     private String nombre;
-
-    @Getter @Setter
-    @ManyToMany(mappedBy = "medicamentos")
-    private List<Cita> citas;
 }

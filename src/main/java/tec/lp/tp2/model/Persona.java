@@ -6,6 +6,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Persona")
 public class Persona {
 
@@ -29,13 +30,4 @@ public class Persona {
     @Getter @Setter
     @Column(name = "correo", unique = true)
     private String correo;
-
-    @Getter @Setter
-    @OneToOne(mappedBy = "persona")
-    private Medico medico;
-
-    @Getter @Setter
-    @OneToMany(mappedBy = "persona")
-    private List<Cita> citas;
-
 }

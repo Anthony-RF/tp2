@@ -43,42 +43,6 @@ public class PacienteDaoImp implements PacienteDao{
 
     }
 
-    public List<PacienteAgendaItem> getAgenda(int cedula) {
-        String query = "FROM Paciente WHERE cedula = :cedula";
-        Paciente Paciente = (Paciente) entityManager.createQuery(query);
-        List<PacienteAgendaItem> agenda = new ArrayList<>();
-        for (Cita cita : Paciente.getCitas()) {
-            PacienteAgendaItem item = new PacienteAgendaItem();
-            item.setFecha(cita.getFecha());
-            item.setMedico(cita.getMedico());
-            agenda.add(item);
-        }
-        return agenda;
-    }
 
-    public List<Medicamento> getTratamiento(){
-        String query = "FROM Paciente WHERE cedula = :cedula";
-        Paciente Paciente = (Paciente) entityManager.createQuery(query);
-        List<Medicamento> tratamiento = new ArrayList<>();
-        for (Cita cita : Paciente.getCitas()){
-            tratamiento.add((Medicamento) cita.getMedicamentos());
-        }
-        return tratamiento;
-    }
-
-    public List<ExpedienteItem> getExpediente() {
-        String query = "FROM Paciente WHERE cedula = :cedula";
-        Paciente Paciente = (Paciente) entityManager.createQuery(query);
-        List<ExpedienteItem> expediente = new ArrayList<>();
-        for (Cita cita : Paciente.getCitas()) {
-            ExpedienteItem item = new ExpedienteItem();
-            item.setFecha(cita.getFecha());
-            item.setPadecimiento(cita.getPadecimiento());
-            item.setProcedimiento(cita.getProcedimiento());
-            item.setMedicamentos(cita.getMedicamentos());
-            expediente.add(item);
-        }
-        return expediente;
-    }
 
 }
