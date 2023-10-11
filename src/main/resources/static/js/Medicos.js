@@ -1,7 +1,7 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
   cargarMedicos();
-  $('#TablaMedicos').DataTable();
+  $('#Medicos').DataTable();
 });
 
 async function cargarMedicos() {
@@ -18,11 +18,7 @@ async function cargarMedicos() {
   for (let medico of medicos) {
     let medicoHtml =
       '<tr>' +
-      '<td>' + medico.cedula + '</td>' +
-      '<td>' + medico.nombre + '</td>' +
-      '<td>' + medico.apellido + '</td>' +
-      '<td>' + medico.correo + '</td>' +
-      '<td>' + medico.identificador + '</td>' +
+      '<td>' + medico.id + '</td>' +
       '<td>' + medico.especialidad + '</td>' +
       '<td><a href="#" class="btn btn-info btn-circle">\n<i class="fas fa-info-circle"></i>\n</a></td>' +
       '<td><a href="#" class="btn btn-danger btn-circle">\n<i class="fas fa-trash"></i>\n</a></td>' +

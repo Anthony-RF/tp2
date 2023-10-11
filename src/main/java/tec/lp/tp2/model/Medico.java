@@ -10,11 +10,10 @@ import java.util.List;
 @Entity
 @Table(name = "Medico")
 @ToString
-public class Medico extends Persona{
+public class Medico{
 
     @Getter @Setter
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -23,8 +22,8 @@ public class Medico extends Persona{
     private String especialidad;
 
     @Getter @Setter
-    @OneToOne
-    @JoinColumn(name = "cedula", referencedColumnName = "cedula")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cedula")
     private Persona persona;
 
     @Getter @Setter

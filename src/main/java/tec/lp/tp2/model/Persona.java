@@ -3,12 +3,14 @@ package tec.lp.tp2.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.type.descriptor.jdbc.TinyIntJdbcType;
 import java.util.List;
 
 @Entity
 @Table(name = "Persona")
-public abstract class Persona {
+public class Persona {
+
+    private static int cantidadPascientes;
+    private static int cantidadMedicos;
 
     @Setter @Getter
     @Id
@@ -27,10 +29,6 @@ public abstract class Persona {
     @Getter @Setter
     @Column(name = "correo", unique = true)
     private String correo;
-
-    @Getter @Setter
-    @Column(name = "tipo")
-    private TinyIntJdbcType tipo;
 
     @Getter @Setter
     @OneToOne(mappedBy = "persona")
