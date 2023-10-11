@@ -78,8 +78,8 @@ VALUES
 
 INSERT INTO Medico (id, especialidad, cedula)
 VALUES
-(0, 'Cirugía', 5),
-(1, 'Cardiología', 6),
-(2, NULL, 7),
-(3, 'Dermatología', 8),
-(4, 'Oftalmología', 9);
+(1, 'Cirugía', 5),
+(2, 'Cardiología', 6),
+(3, 'MG', 7),
+(4, 'Dermatología', 8),
+(5, 'Oftalmología', 9);

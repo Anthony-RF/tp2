@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Médicos</title>
+</head>
+<body>
+<h1>Lista de Médicos</h1>
+<!-- Tabla para mostrar la lista de médicos -->
+<table>
+    <!-- Encabezados de la tabla -->
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Especialidad</th>
+        <th>Cédula</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <!-- Datos de los médicos -->
+    <tbody>
+    <tr th:each="medico : ${medicos}">
+        <td th:text="${medico.id}">1</td>
+        <td th:text="${medico.especialidad}">Cardiología</td>
+        <td th:text="${medico.cedula}">123456</td>
+        <td>
+            <!-- Enlaces para editar y eliminar médicos -->
+            <a th:href="@{/medicos/edit/{id}(id=${medico.id})}">Editar</a>
+            <a th:href="@{/medicos/delete/{id}(id=${medico.id})}">Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!-- Enlace para agregar un nuevo médico -->
+<a th:href="@{/medicos/add}">Agregar Médico</a>
+<!-- JavaScript para la entidad Medico -->
+<script src="medicos.js"></script>
+</body>
+</html>

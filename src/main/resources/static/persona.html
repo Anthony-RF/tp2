@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Personas</title>
+</head>
+<body>
+<h1>Lista de Personas</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Cédula</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="persona : ${personas}">
+        <td th:text="${persona.cedula}">123456</td>
+        <td th:text="${persona.nombre}">Nombre</td>
+        <td th:text="${persona.apellido}">Apellido</td>
+        <td th:text="${persona.correo}">correo@example.com</td>
+        <td>
+            <a th:href="@{/personas/edit/{cedula}(cedula=${persona.cedula})}">Editar</a>
+            <a th:href="@{/personas/delete/{cedula}(cedula=${persona.cedula})}">Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/personas/add}">Agregar Persona</a>
+<a th:href="@{/personas/list}">Ver Lista de Personas</a>
+<a th:href="@{/personas/add}">Agregar Persona</a>
+
+<script src="personas.js"></script>
+</body>
+</html>
